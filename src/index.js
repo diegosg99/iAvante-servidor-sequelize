@@ -2,9 +2,19 @@
 
 const express = require("express");
 const v1CoursesRouter = require("./v1/routes/courses.routes")
+const moment = require('moment');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const morgan = require('morgan');
+const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 3003;
+const SECRET = "614f4f4a6568e9ae881c76e8753f65c9";
+
+app.use(express.json({limit: '500mb'}));
+app.use(cors());
+app.use(morgan('dev'));
 
 //-------------------- ROUTES -------------------------------------------
 
