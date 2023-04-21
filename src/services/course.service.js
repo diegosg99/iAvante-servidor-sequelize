@@ -1,4 +1,4 @@
-const connection = require('../database/Course')
+const connection = require('../database/DB-asistencia')
 
 const getAllCourses = () => {
         let sql = `SELECT * FROM cursos;`;
