@@ -26,37 +26,40 @@ const getCourseName = () => {
 }
 
 const getDocumentation = (courseCode) => {
-    try{
         let sql = `SELECT documentationUrl FROM cursos WHERE code = '${courseCode}';`;
-        connection.query(sql, function(err, rows, fields) {
-            if (err) throw err;
-            return {status:200,data:rows}
-            });
-    }catch(error){
-        return {status:200,data:'Error'}
-    }
-    return
+        return new Promise(function(resolve, reject) {
+
+            connection.query(sql, function(err, rows, fields) {    
+                resolve({status:200, data:rows});
+                reject({status:400, data:'Error'});            
+            });            
+        })
 }
+
 const getCourseRoom = (courseCode) => {
-    try{
         let sql = `SELECT room FROM cursos WHERE code = '${courseCode}';`;
-        connection.query(sql, function(err, rows, fields) {
-            if (err) throw err;
-            return {status:200,data:rows}
-            });
-    }catch(error){
-        return {status:400,data:'Error'}
-    }}
+        return new Promise(function(resolve, reject) {
+
+            connection.query(sql, function(err, rows, fields) {    
+                resolve({status:200, data:rows});
+                reject({status:400, data:'Error'});            
+        });            
+    })
+}
+
 const getCourseData = (courseCode) => {
-    try{
-        let sql = `SELECT * FROM cursos WHERE code = '${courseCode}';`;
-        connection.query(sql, function(err, rows, fields) {
-            if (err) throw err;
-            return {status:200,data:rows[0]}
-            });
-    }catch(error){
-        return {status:400,data:'Error'}
-    }}
+
+    let sql = `SELECT * FROM cursos WHERE code = '${courseCode}';`;
+
+    return new Promise(function(resolve, reject) {
+
+        connection.query(sql, function(err, rows, fields) {    
+                resolve({status:200, data:rows});
+                reject({status:400, data:'Error'});            
+            });            
+        })
+}
+
 const postExcelData = (reqData) => {
     try{
       

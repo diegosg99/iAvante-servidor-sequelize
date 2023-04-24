@@ -28,29 +28,53 @@ const getCourseName = (req,res) => {
 const getDocumentation = (req,res) => {
     let courseCode = req.params.courseCode;
 
-    let {status,data} = courseService.getDocumentation(courseCode);
-    res.status(status).send(data);
+    courseService.getDocumentation(courseCode)
+        .then(({status,data}) => {
+            console.log(data);
+            res.status(status).send(data);
+        })
+        .catch(({status,data}) => {
+            res.status(status).send(data);
+        });
 }
 
 const getCourseRoom = (req,res) => {
     let courseCode = req.params.courseCode;
 
-    let {status,data} = courseService.getCourseRoom(courseCode);
-    res.status(status).send(data);
+    courseService.getCourseRoom(courseCode)
+        .then(({status,data}) => {
+            console.log(data);
+            res.status(status).send(data);
+        })
+        .catch(({status,data}) => {
+            res.status(status).send(data);
+        });
 }
 
 const getCourseData = (req,res) => {
     let courseCode = req.params.courseCode;
     
-    let {status,data} = courseService.getCourseData();
-    res.status(status).send(data);
+    courseService.getCourseData(courseCode)
+        .then(({status,data}) => {
+            console.log(data);
+            res.status(status).send(data);
+        })
+        .catch(({status,data}) => {
+            res.status(status).send(data);
+        });
 }
 
 const postExcelData = (req,res) => {
     let reqData = req.body;
     
-      let {status,data} = courseService.postExcelData(reqData);
-      res.status(status).send(data);
+      courseService.postExcelData(reqData)
+        .then(({status,data}) => {
+            console.log(data);
+            res.status(status).send(data);
+        })
+        .catch(({status,data}) => {
+            res.status(status).send(data);
+        });
 }
 
 module.exports = {
