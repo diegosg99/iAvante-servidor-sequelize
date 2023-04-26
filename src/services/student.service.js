@@ -10,10 +10,10 @@ const updateStudent = (data,timestamp) => {
                 phone='${data.phone}',
                 details='${data.details}',
                 rights='${data.rights}',
-                entry='${moment.unix(timestamp).format("YYYY-MM-DD HH:mm:ss")}'
+                entry='${timestamp}'
                 WHERE dni = '${data.dni}';`;
         
-        return new Promise(function(resolve, reject) {
+        return new Promise((resolve, reject) => {
 
             connection.query(sql, function(err, rows, fields) {    
                 resolve({status:200, data:rows});

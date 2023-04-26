@@ -1,11 +1,15 @@
 const studentsService = require("../services/student.service");
+const moment = require('moment');
+
 
 const updateStudent = (req, res) => {
 
     let data = req.body;
-    let timestamp = moment().unix();
+    let time = moment().format('YYYY-MM-DD HH:mm:ss');
 
-    studentsService.updateStudent(data,timestamp)
+    console.log(time);
+
+    studentsService.updateStudent(data,time)
         .then(({status,data}) => {
             res.status(status).send(data);
         })

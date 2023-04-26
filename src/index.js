@@ -3,7 +3,6 @@
 const express = require("express");
 const v1CoursesRouter = require("./v1/routes/courses.routes")
 const v1StudentsRouter = require("./v1/routes/students.routes")
-const moment = require('moment');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const morgan = require('morgan');
