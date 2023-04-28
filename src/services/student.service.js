@@ -1,7 +1,7 @@
 const connection = require('../database/DB-asistencia')
 
 const updateStudent = (data,timestamp) => {
-    
+
     let sql = `UPDATE alumnos 
                 SET dni='${data.dni}',
                 name='${data.name}',
@@ -11,7 +11,7 @@ const updateStudent = (data,timestamp) => {
                 details='${data.details}',
                 rights='${data.rights}',
                 entry='${timestamp}'
-                WHERE dni = '${data.dni}';`;
+                WHERE dni = '${data.oldDNI}';`;
         
         return new Promise((resolve, reject) => {
 

@@ -1,7 +1,7 @@
 const connection = require('../database/DB-asistencia')
 
 const getAllCourses = () => {
-        let sql = `SELECT * FROM cursos;`;
+        let sql = `SELECT * FROM cursos ORDER BY name ASC;`;
         
 
         return new Promise(function(resolve, reject) {
@@ -61,19 +61,30 @@ const getCourseData = (courseCode) => {
 }
 
 const postExcelData = (reqData) => {
-    try{
-      
-        data.forEach(item =>{
-          let sql = `INSERT IGNORE INTO cursos VALUES ('${item.id}','${item.code}','${item.name}','${item.tutor}','${item.room}','${item.day}','${item.documentation}')`;
-      
-        connection.query(sql, function(err, rows, fields) {
-            if (err) throw err;
-            return {status:200,data:'Exito'}
-            });
-        })
-      }catch(error) {
-        return {status:400,data:'Error subiendo datos'}
-    }}
+
+    return new Promise(function(resolve, reject) {
+
+        let inserted_rows = 0;
+
+    reqData.forEach(item =>{
+        let sql = `INSERT IGNORE
+            INTO cursos 
+            VALUES ('${item.id}','${item.code}','${item.name}','${null}','${item.date_start}',
+            '${item.date_end}','${item.pres_days}','${item.location}',
+            '${item.province}','${item.state}','${null}',
+            '${item.platform}','${item.documentation}');`;
+        
+            console.log(sql);
+        connection.query(sql);
+
+        inserted_rows++;
+    });            
+
+    console.log(inserted_rows);
+    resolve({status:200, data:'Subida realizada con éxito, se han subido '+inserted_rows+' filas.'});
+    reject({status:400, data:'Error'}); 
+    })
+}
 
 module.exports = {
     getAllCourses,

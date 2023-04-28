@@ -3,6 +3,7 @@
 const express = require("express");
 const v1CoursesRouter = require("./v1/routes/courses.routes")
 const v1StudentsRouter = require("./v1/routes/students.routes")
+const v1AdminsRouter = require("./v1/routes/admins.routes")
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const morgan = require('morgan');
@@ -34,6 +35,7 @@ app.use(morgan('dev'));
 
 app.use("/api/v1/courses",v1CoursesRouter);
 app.use("/api/v1/students",v1StudentsRouter);
+app.use("/api/v1/admins",v1AdminsRouter);
 
 //-------------------- START SERVER ------------------------------------
 app.listen(PORT, () =>
