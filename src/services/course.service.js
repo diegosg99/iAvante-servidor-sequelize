@@ -13,6 +13,19 @@ const getAllCourses = () => {
         })
 }
 
+const getMonthCourses = (month) => {
+    let sql = `SELECT * FROM cursos WHERE start_date WHERE start_date LIKE %/${month}/% ORDER BY name ASC;`;
+    
+
+    return new Promise(function(resolve, reject) {
+
+        connection.query(sql, function(err, rows, fields) {    
+            resolve({status:200, data:rows});
+            reject({status:400, data:'Error'});            
+        });            
+    })
+}
+
 const getCourseName = () => {
         let sql = `SELECT code,name FROM cursos;`;
 
@@ -67,20 +80,21 @@ const postExcelData = (reqData) => {
         let inserted_rows = 0;
 
     reqData.forEach(item =>{
+        console.log(item);
         let sql = `INSERT IGNORE
-            INTO cursos 
-            VALUES ('${item.id}','${item.code}','${item.name}','${null}','${item.date_start}',
-            '${item.date_end}','${item.pres_days}','${item.location}',
-            '${item.province}','${item.state}','${null}',
-            '${item.platform}','${item.documentation}');`;
+                    INTO cursos 
+                    VALUES ('${item.id}','${item.code}','${item.name}','${item.tutor}','${item.room}',
+                    '${item.pres_days}','${item.documentation}','${item.state}',
+                    '${item.location}','${item.province}','${item.platform}',
+                    '${item.date_start}','${item.date_end}');`;
         
-            console.log(sql);
+        console.log("SQL: "+sql);
         connection.query(sql);
 
         inserted_rows++;
     });            
 
-    console.log(inserted_rows);
+    console.log("INSERTED ROWS: "+inserted_rows);
     resolve({status:200, data:'Subida realizada con éxito, se han subido '+inserted_rows+' filas.'});
     reject({status:400, data:'Error'}); 
     })
@@ -88,6 +102,7 @@ const postExcelData = (reqData) => {
 
 module.exports = {
     getAllCourses,
+    getMonthCourses,
     getCourseName,
     getDocumentation,
     getCourseRoom,

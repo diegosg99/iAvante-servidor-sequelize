@@ -4,6 +4,7 @@ const courseController = require("../../controllers/course.controller")
 
 routerCourses
     .get('/', courseController.getAllCourses)
+    .get('/:month', courseController.getMonthCourses)
     .get('/name', courseController.getCourseName)
     .get('/documentation/:courseCode',courseController.getDocumentation)
     .get('/room/:courseCode',courseController.getCourseRoom)
