@@ -1,3 +1,4 @@
+const moment = require('moment/moment');
 const connection = require('../database/DB-asistencia')
 
 const getAllCourses = () => {
@@ -14,12 +15,29 @@ const getAllCourses = () => {
 }
 
 const getMonthCourses = (month) => {
-    let sql = `SELECT * FROM cursos WHERE start_date WHERE start_date LIKE %/${month}/% ORDER BY name ASC;`;
-    
+    let realMonths = {
+        '0':'01',
+        '1':'02',
+        '2':'03',
+        '3':'04',
+        '4':'05',
+        '5':'06',
+        '6':'07',
+        '7':'08',
+        '8':'09',
+        '9':'10',
+        '10':'11',
+        '11':'12'
+    };
+    //month = oneNumberMonths.find(months => months===month)? '0'+parseInt(month)+1:parseInt(month)+1;
+
+    let sql = `SELECT * FROM cursos WHERE start_date LIKE '%/${realMonths[month]}/${moment().year()}%' ORDER BY name ASC;`;
+    console.log(sql);
 
     return new Promise(function(resolve, reject) {
 
         connection.query(sql, function(err, rows, fields) {    
+            console.log(rows);
             resolve({status:200, data:rows});
             reject({status:400, data:'Error'});            
         });            
