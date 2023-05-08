@@ -1,7 +1,9 @@
 const express = require('express');
-const router = express.Router();
+const routerEvents = express.Router();
+//const courseController = require("../../controllers/course.controller")
 
-router.get('/calendar/events/:province/:month/:day',(req,res) => {
+
+routerEvents.get('/calendar/events/:province/:month/:day',(req,res) => {
     try{
         let data = req.params;
         let sql = `SELECT * FROM eventos WHERE month = `+data.month+` AND day= `+data.day+` AND province = `+data.province+`;`;
@@ -15,7 +17,7 @@ router.get('/calendar/events/:province/:month/:day',(req,res) => {
     }
   })
 
-router.get('/calendar/events/:month',(req,res) => {
+  routerEvents.get('/calendar/events/:month',(req,res) => {
     try{
         let data = req.params.month;
         let sql = `SELECT * FROM eventos WHERE month = `+data+`;`;
@@ -28,4 +30,4 @@ router.get('/calendar/events/:month',(req,res) => {
     }
   })
 
-  module.exports = router;
+  module.exports = routerEvents;

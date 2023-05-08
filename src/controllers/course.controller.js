@@ -24,6 +24,20 @@ const getMonthCourses = (req, res) => {
         });    
 }
 
+const getEvent = (req,res) => {
+    let province = req.params.province;
+    let month = req.params.month;
+    let day = req.params.day;
+
+    courseService.getEvent(province,month,day)
+        .then(({status,data}) => {
+            res.status(status).send(data);
+        })
+        .catch(({status,data}) => {
+            res.status(status).send(data);
+        });    
+}
+
 const getCourseName = (req,res) => {
     
     courseService.getCourseName()
@@ -92,6 +106,7 @@ const postExcelData = (req,res) => {
 module.exports = {
     getAllCourses,
     getMonthCourses,
+    getEvent,
     getCourseName,
     getDocumentation,
     getCourseRoom,
