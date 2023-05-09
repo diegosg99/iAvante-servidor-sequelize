@@ -153,6 +153,26 @@ const postExcelData = (reqData) => {
     })
 }
 
+const updateCourse = (course) => {
+    return new Promise(function(resolve, reject) {
+
+    let sql =   `UPDATE 
+                    cursos
+                SET 
+                    name = '${course.name}', tutor = '${course.tutor}', room = ${course.room},
+                    workshops = ${course.workshops},
+                    location = '${course.location}', schedule = '${course.schedule}',
+                    breakfast = '${course.breakfast}', lunch = '${course.lunch}'
+                WHERE code = '${course.code}';`;
+    
+    console.log("SQL: "+sql);
+    connection.query(sql);
+
+    resolve({status:200, data:'Actualización realizada con éxito.'});
+    reject({status:400, data:'Error'}); 
+    })
+}
+
 module.exports = {
     getAllCourses,
     getMonthCourses,
@@ -161,5 +181,6 @@ module.exports = {
     getDocumentation,
     getCourseRoom,
     getCourseData,
-    postExcelData
+    postExcelData,
+    updateCourse
 }
