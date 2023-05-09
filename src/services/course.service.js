@@ -79,6 +79,24 @@ const getEvent = (province,month,day) => {
     })
 }
 
+const getEventByCode = (code) => {
+
+    let sql = `SELECT * 
+    FROM cursos 
+    WHERE code LIKE '%${code}%'
+    ORDER BY name ASC;`;
+    console.log(sql);
+
+    return new Promise(function(resolve, reject) {
+
+        connection.query(sql, function(err, rows, fields) {    
+            console.log(rows);
+            resolve({status:200, data:rows});
+            reject({status:400, data:'Error'});            
+        });            
+    })
+}
+
 const getCourseName = () => {
         let sql = `SELECT code,name FROM cursos;`;
 
@@ -177,6 +195,7 @@ module.exports = {
     getAllCourses,
     getMonthCourses,
     getEvent,
+    getEventByCode,
     getCourseName,
     getDocumentation,
     getCourseRoom,

@@ -6,6 +6,7 @@ routerCourses
     .get('/', courseController.getAllCourses)
     .get('/:month', courseController.getMonthCourses)
     .get('/calendar/event/:province/:month/:day',courseController.getEvent)
+    .get('/calendar/event/:code',courseController.getEventByCode)
     .get('/name', courseController.getCourseName)
     .get('/documentation/:courseCode',courseController.getDocumentation)
     .get('/room/:courseCode',courseController.getCourseRoom)

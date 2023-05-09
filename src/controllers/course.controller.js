@@ -38,6 +38,18 @@ const getEvent = (req,res) => {
         });    
 }
 
+const getEventByCode = (req,res) => {
+    let code = req.params.code;
+
+    courseService.getEventByCode(code)
+        .then(({status,data}) => {
+            res.status(status).send(data);
+        })
+        .catch(({status,data}) => {
+            res.status(status).send(data);
+        });    
+}
+
 const getCourseName = (req,res) => {
     
     courseService.getCourseName()
@@ -120,6 +132,7 @@ module.exports = {
     getAllCourses,
     getMonthCourses,
     getEvent,
+    getEventByCode,
     getCourseName,
     getDocumentation,
     getCourseRoom,
