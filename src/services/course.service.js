@@ -173,17 +173,16 @@ const postExcelData = (reqData) => {
 
 const updateCourse = (course) => {
     return new Promise(function(resolve, reject) {
+        console.log('---------------------------------------------CURSO-----------------------------------')
+        console.log(course);
 
-    let sql =   `UPDATE 
-                    cursos
-                SET 
-                    name = '${course.name}', tutor = '${course.tutor}', room = ${course.room},
-                    workshops = ${course.workshops},
-                    location = '${course.location}', schedule = '${course.schedule}',
-                    breakfast = '${course.breakfast}', lunch = '${course.lunch}'
-                WHERE code = '${course.code}';`;
-    
-    console.log("SQL: "+sql);
+        //Añadir tutor al sql
+    let sql =   `UPDATE cursos SET name = '${course.name}',tutor= '${course.tutor}', room = ${course.rooms},
+                    workshops = ${course.workshops},location = '${course.location}', schedule = '${course.hours}',
+                    breakfast = '${course.breakfast}', lunch = '${course.lunch}',
+                    platform = '${course.platform}',state = '${course.state}',pres_days= '${course.pres_days}',documentationUrl= '${course.documentation}'
+                    WHERE code LIKE '%${course.code}%';`;
+    console.log(sql);
     connection.query(sql);
 
     resolve({status:200, data:'Actualización realizada con éxito.'});
