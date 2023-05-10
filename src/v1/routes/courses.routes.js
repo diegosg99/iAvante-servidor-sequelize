@@ -12,6 +12,6 @@ routerCourses
     .get('/room/:courseCode',courseController.getCourseRoom)
     .get('/:courseCode',courseController.getCourseData)
     .post('/uploadExcel',courseController.postExcelData)
-    .put('/update/course',courseController.updateCourse)
+    .put('/update',courseController.updateCourse)
 
 module.exports = routerCourses;
