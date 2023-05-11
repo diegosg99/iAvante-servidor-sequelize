@@ -141,6 +141,21 @@ const createCourse = (req,res) => {
         });
 }
 
+const deleteCourse = (req,res) => {
+    let reqData = req.body;
+
+    console.log(reqData)
+    
+      courseService.deleteCourse(reqData)
+        .then(({status,data}) => {
+            console.log(data);
+            res.status(status).send(data);
+        })
+        .catch(({status,data}) => {
+            res.status(status).send(data);
+        });
+}
+
 module.exports = {
     getAllCourses,
     getMonthCourses,
@@ -152,5 +167,6 @@ module.exports = {
     getCourseData,
     postExcelData,
     updateCourse,
-    createCourse
+    createCourse,
+    deleteCourse
 }

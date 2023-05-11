@@ -14,5 +14,8 @@ routerCourses
     .post('/uploadExcel',courseController.postExcelData)
     .put('/update',courseController.updateCourse)
     .post('/create',courseController.createCourse)
+    .post('/create',courseController.createCourse)
+    .post('/delete',courseController.deleteCourse)
+
 
 module.exports = routerCourses;

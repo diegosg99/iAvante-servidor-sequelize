@@ -209,6 +209,19 @@ const createCourse = (course) => {
     })
 }
 
+const deleteCourse = (data) => {
+    console.log(data);
+    return new Promise(function(resolve, reject) {
+
+    let sql = `DELETE FROM cursos WHERE code LIKE '%${data.code}%';`;
+        console.log(sql);
+    connection.query(sql);
+
+    resolve({status:200, data:'Curso eliminado con éxito.'});
+    reject({status:400, data:'Error'}); 
+    })
+}
+
 
 module.exports = {
     getAllCourses,
@@ -221,5 +234,6 @@ module.exports = {
     getCourseData,
     postExcelData,
     updateCourse,
-    createCourse
+    createCourse,
+    deleteCourse
 }
