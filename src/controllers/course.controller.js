@@ -128,6 +128,19 @@ const updateCourse = (req,res) => {
         });
 }
 
+const createCourse = (req,res) => {
+    let reqData = req.body;
+    
+      courseService.createCourse(reqData)
+        .then(({status,data}) => {
+            console.log(data);
+            res.status(status).send(data);
+        })
+        .catch(({status,data}) => {
+            res.status(status).send(data);
+        });
+}
+
 module.exports = {
     getAllCourses,
     getMonthCourses,
@@ -138,5 +151,6 @@ module.exports = {
     getCourseRoom,
     getCourseData,
     postExcelData,
-    updateCourse
+    updateCourse,
+    createCourse
 }

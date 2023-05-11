@@ -13,5 +13,6 @@ routerCourses
     .get('/:courseCode',courseController.getCourseData)
     .post('/uploadExcel',courseController.postExcelData)
     .put('/update',courseController.updateCourse)
+    .post('/create',courseController.createCourse)
 
 module.exports = routerCourses;

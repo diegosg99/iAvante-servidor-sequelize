@@ -180,7 +180,8 @@ const updateCourse = (course) => {
     let sql =   `UPDATE cursos SET name = '${course.name}',tutor= '${course.tutor}', room = ${course.rooms},
                     workshops = ${course.workshops},location = '${course.location}', schedule = '${course.hours}',
                     breakfast = '${course.breakfast}', lunch = '${course.lunch}',
-                    platform = '${course.platform}',state = '${course.state}',pres_days= '${course.pres_days}',documentationUrl= '${course.documentation}'
+                    platform = '${course.platform}',state = '${course.state}',pres_days= '${course.pres_days}',documentationUrl= '${course.documentation}',
+                    details= '${course.details}'
                     WHERE code LIKE '%${course.code}%';`;
     console.log(sql);
     connection.query(sql);
@@ -189,6 +190,25 @@ const updateCourse = (course) => {
     reject({status:400, data:'Error'}); 
     })
 }
+
+const createCourse = (course) => {
+    console.log(course);
+    return new Promise(function(resolve, reject) {
+
+    let sql =   `INSERT INTO cursos (code,name,tutor,room,workshops,location,schedule,breakfast,lunch,province,platform,start_date,end_date,state,pres_days,documentationUrl,details) 
+                VALUES ('${course.code}','${course.name}','${course.tutor}',
+                    '${course.rooms}','${course.workshops}','${course.location}','${course.hours}',
+                    '${course.breakfast}','${course.lunch}','${course.province}','${course.platform}',
+                    '${course.date_start}','${course.date_end}','${course.state}',
+                    '${course.pres_days}','${course.documentation}','${course.details}');`;
+    console.log(sql);
+    connection.query(sql);
+
+    resolve({status:200, data:'Subida realizada con éxito.'});
+    reject({status:400, data:'Error'}); 
+    })
+}
+
 
 module.exports = {
     getAllCourses,
@@ -200,5 +220,6 @@ module.exports = {
     getCourseRoom,
     getCourseData,
     postExcelData,
-    updateCourse
+    updateCourse,
+    createCourse
 }
