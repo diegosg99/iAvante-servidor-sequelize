@@ -177,11 +177,10 @@ const updateCourse = (course) => {
         console.log(course);
 
         //Añadir tutor al sql
-    let sql =   `UPDATE cursos SET name = '${course.name}',tutor= '${course.tutor}', room = ${course.rooms},
+    let sql =   `UPDATE cursos SET name = '${course.name}', room = ${course.rooms},
                     workshops = ${course.workshops},location = '${course.location}', schedule = '${course.hours}',
-                    breakfast = '${course.breakfast}', lunch = '${course.lunch}',
-                    platform = '${course.platform}',state = '${course.state}',pres_days= '${course.pres_days}',documentationUrl= '${course.documentation}',
-                    details= '${course.details}'
+                    breakfast = '${course.breakfast}',snack = '${course.snack}', lunch = '${course.lunch}',
+                    details= '${course.details}',color= '${course.color}'
                     WHERE code LIKE '%${course.code}%';`;
     console.log(sql);
     connection.query(sql);
@@ -195,12 +194,12 @@ const createCourse = (course) => {
     console.log(course);
     return new Promise(function(resolve, reject) {
 
-    let sql =   `INSERT INTO cursos (code,name,tutor,room,workshops,location,schedule,breakfast,lunch,province,platform,start_date,end_date,state,pres_days,documentationUrl,details) 
-                VALUES ('${course.code}','${course.name}','${course.tutor}',
-                    '${course.rooms}','${course.workshops}','${course.location}','${course.hours}',
-                    '${course.breakfast}','${course.lunch}','${course.province}','${course.platform}',
-                    '${course.date_start}','${course.date_end}','${course.state}',
-                    '${course.pres_days}','${course.documentation}','${course.details}');`;
+    let sql =   `INSERT INTO cursos (code,name,room,workshops,location,schedule,breakfast,snack,lunch,province,start_date,end_date,details,color) 
+                VALUES ('${course.code}','${course.name}',
+                    '${course.rooms}','${course.workshops}','${course.location}',
+                    '${course.hours}','${course.breakfast}','${course.snack}',
+                    '${course.lunch}','${course.province}','${course.date_start}',
+                    '${course.date_end}','${course.details}','${course.color}');`;
     console.log(sql);
     connection.query(sql);
 
