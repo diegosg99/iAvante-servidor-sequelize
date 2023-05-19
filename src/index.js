@@ -5,6 +5,7 @@ const v1CoursesRouter = require("./v1/routes/courses.routes")
 const v1StudentsRouter = require("./v1/routes/students.routes")
 const v1AdminsRouter = require("./v1/routes/admins.routes")
 const v1SurveysRouter = require("./v1/routes/surveys.routes")
+const v1InventaryRouter = require("./v1/routes/inventary.routes")
 //const v1EventsRouter = require("./v1/routes/events.routes")
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -25,20 +26,11 @@ app.use(morgan('dev'));
 
 //-------------------- ROUTES -------------------------------------------
 
-// app.use(require('./routes/admins.routes'));
-
-// app.use(require('./routes/students.routes'));
-
-// app.use(require('./routes/courses.routes'));
-
-// app.use(require('./routes/survey.routes'));
-
-// app.use(require('./routes/events.routes'));
-
 app.use("/api/v1/courses",v1CoursesRouter);
 app.use("/api/v1/students",v1StudentsRouter);
 app.use("/api/v1/admins",v1AdminsRouter);
 app.use("/api/v1/surveys",v1SurveysRouter);
+app.use("/api/v1/inventary",v1InventaryRouter);
 ////app.use("/api/v1/events",v1EventsRouter);
 
 //-------------------- START SERVER ------------------------------------
