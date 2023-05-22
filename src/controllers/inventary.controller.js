@@ -12,6 +12,19 @@ const getAllItems = (req, res) => {
         });    
 }
 
+const getAllSellers = (req, res) => {
+
+    inventaryService.getAllSellers()
+        .then(({status,data}) => {
+            console.log(data);
+            res.status(status).send(data);
+        })
+        .catch(({status,data}) => {
+            res.status(status).send(data);
+        });    
+}
+
 module.exports = {
-    getAllItems
+    getAllItems,
+    getAllSellers
 }

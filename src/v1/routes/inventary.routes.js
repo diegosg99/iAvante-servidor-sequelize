@@ -3,6 +3,7 @@ const routerInventary = express.Router();
 const inventaryController = require("../../controllers/inventary.controller")
 
 routerInventary
-    .get('/', inventaryController.getAllItems)
+.get('/', inventaryController.getAllItems)
+.get('/sellers', inventaryController.getAllSellers)
 
 module.exports = routerInventary;
