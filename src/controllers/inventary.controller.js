@@ -24,7 +24,20 @@ const getAllSellers = (req, res) => {
         });    
 }
 
+const getAllPrices = (req, res) => {
+
+    inventaryService.getAllPrices()
+        .then(({status,data}) => {
+            console.log(data);
+            res.status(status).send(data);
+        })
+        .catch(({status,data}) => {
+            res.status(status).send(data);
+        });    
+}
+
 module.exports = {
     getAllItems,
-    getAllSellers
+    getAllSellers,
+    getAllPrices
 }

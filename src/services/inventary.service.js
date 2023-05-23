@@ -24,7 +24,20 @@ const getAllSellers = () => {
     })
 }
 
+const getAllPrices = () => {
+    let sql = `SELECT * FROM precios ORDER BY ProductoID ASC;`;
+    
+    return new Promise(function(resolve, reject) {
+
+        connection.query(sql, function(err, rows, fields) {    
+            resolve({status:200, data:rows});
+            reject({status:400, data:'Error'});            
+        });            
+    })
+}
+
 module.exports = {
     getAllItems,
-    getAllSellers
+    getAllSellers,
+    getAllPrices
 }
