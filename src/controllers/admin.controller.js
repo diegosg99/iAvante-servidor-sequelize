@@ -10,6 +10,9 @@ const registerAdmin = async (req, res) => {
     let data = req.body;
     let encodedPassword = await bcryptService.encodePassword(data.password);
 
+    console.log(data);
+    console.log(encodedPassword);
+
     adminsService.registerAdmin(data,encodedPassword)
         .then(({status,data}) => {
             res.status(status).send(data);
@@ -22,6 +25,8 @@ const registerAdmin = async (req, res) => {
 const loginAdmin = async (req, res) => {
 
     let item = req.body;
+
+    console.log(item);
 
     adminsService.getAdmin(item.username)
     .then(({status,data}) => {
