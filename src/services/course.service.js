@@ -177,8 +177,8 @@ const updateCourse = (course) => {
         console.log(course);
 
         //Añadir tutor al sql
-    let sql =   `UPDATE cursos SET name = '${course.name}', room = ${course.rooms},
-                    workshops = ${course.workshops},location = '${course.location}', schedule = '${course.hours}',
+    let sql =   `UPDATE cursos SET name = '${course.name}', room = '${course.rooms}',
+                    workshops = '${course.workshops}',location = '${course.location}', schedule = '${course.hours}',
                     breakfast = '${course.breakfast}',snack = '${course.snack}', lunch = '${course.lunch}',
                     details= '${course.details}',color= '${course.color}'
                     WHERE code LIKE '%${course.code}%';`;
