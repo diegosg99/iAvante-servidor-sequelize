@@ -7,9 +7,9 @@ const v1AdminsRouter = require("./v1/routes/admins.routes")
 const v1SurveysRouter = require("./v1/routes/surveys.routes")
 const v1InventaryRouter = require("./v1/routes/inventary.routes")
 //const v1EventsRouter = require("./v1/routes/events.routes")
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
-const morgan = require('morgan');
+// const jwt = require("jsonwebtoken");
+// const bcrypt = require("bcrypt");
+//const morgan = require('morgan');
 const cors = require("cors");
 require('dotenv').config()
 
@@ -22,7 +22,7 @@ process.env.STATUS === 'production'
 
 app.use(express.json({limit: '500mb'}));
 app.use(cors());
-app.use(morgan('dev'));
+//app.use(morgan('dev'));
 
 //-------------------- ROUTES -------------------------------------------
 

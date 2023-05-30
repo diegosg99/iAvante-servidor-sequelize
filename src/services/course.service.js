@@ -176,16 +176,18 @@ const updateCourse = (course) => {
         console.log('---------------------------------------------CURSO-----------------------------------')
         console.log(course);
 
-        //Añadir tutor al sql
-    let sql =   `UPDATE cursos SET name = '${course.name}', room = '${course.rooms}',
-                    workshops = '${course.workshops}',location = '${course.location}', schedule = '${course.hours}',
-                    breakfast = '${course.breakfast}',snack = '${course.snack}', lunch = '${course.lunch}',
-                    details= '${course.details}',color= '${course.color}'
-                    WHERE code LIKE '%${course.code}%';`;
-    console.log(sql);
-    connection.query(sql);
+        if (course.code !== null || course.code !== undefined || course.code !== "" || course.code !== "null") {
+            let sql =   `UPDATE cursos SET name = '${course.name}', room = '${course.rooms}',
+            workshops = '${course.workshops}',location = '${course.location}', schedule = '${course.hours}',
+            breakfast = '${course.breakfast}',snack = '${course.snack}', lunch = '${course.lunch}',
+            details= '${course.details}',color= '${course.color}'
+            WHERE code = '${course.code}';`;
+            console.log(sql);
+            connection.query(sql);
 
-    resolve({status:200, data:'Actualización realizada con éxito.'});
+            resolve({status:200, data:'Actualización realizada con éxito.'});
+        }
+
     reject({status:400, data:'Error'}); 
     })
 }
@@ -212,7 +214,7 @@ const deleteCourse = (data) => {
     console.log(data);
     return new Promise(function(resolve, reject) {
 
-    let sql = `DELETE FROM cursos WHERE code LIKE '%${data.code}%';`;
+    let sql = `DELETE FROM cursos WHERE code = '${data.code}';`;
         console.log(sql);
     connection.query(sql);
 
