@@ -2,9 +2,10 @@ var Service = require('node-windows').Service;
 
 // Create a new service object
 var svc = new Service({
-  name:'Servidor iavante',
+  name:'API iavante',
   description: 'API de iavante',
-  script: 'C:/Users/diego/servidor/iAvante-servidor-sequelize/node-service.js'
+  script: 'C:/Users/diego/servidor/iAvante-servidor-sequelize/src/index.js',
+  // execPath: 'C:/Users/diego/servidor/iAvante-servidor-sequelize/daemon/apiiavante.exe'
 });
 
 // Listen for the "install" event, which indicates the

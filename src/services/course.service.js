@@ -174,15 +174,13 @@ const postExcelData = (reqData) => {
 const updateCourse = (course) => {
     return new Promise(function(resolve, reject) {
         console.log('---------------------------------------------CURSO-----------------------------------')
-        console.log(course);
 
         if (course.code !== null || course.code !== undefined || course.code !== "" || course.code !== "null") {
-            let sql =   `UPDATE cursos SET name = '${course.name}', room = '${course.rooms}',
+            let sql =   `UPDATE cursos SET code = '${course.code}', name = '${course.name}', room = '${course.rooms}',
             workshops = '${course.workshops}',location = '${course.location}', schedule = '${course.hours}',
             breakfast = '${course.breakfast}',snack = '${course.snack}', lunch = '${course.lunch}',
             details= '${course.details}',color= '${course.color}'
-            WHERE code = '${course.code}';`;
-            console.log(sql);
+            WHERE id = '${course.id}';`;
             connection.query(sql);
 
             resolve({status:200, data:'Actualización realizada con éxito.'});
@@ -193,7 +191,6 @@ const updateCourse = (course) => {
 }
 
 const createCourse = (course) => {
-    console.log(course);
     return new Promise(function(resolve, reject) {
 
     let sql =   `INSERT INTO cursos (code,name,room,workshops,location,schedule,breakfast,snack,lunch,province,start_date,end_date,details,color) 
@@ -202,7 +199,6 @@ const createCourse = (course) => {
                     '${course.hours}','${course.breakfast}','${course.snack}',
                     '${course.lunch}','${course.province}','${course.date_start}',
                     '${course.date_end}','${course.details}','${course.color}');`;
-    console.log(sql);
     connection.query(sql);
 
     resolve({status:200, data:'Subida realizada con éxito.'});
@@ -211,11 +207,9 @@ const createCourse = (course) => {
 }
 
 const deleteCourse = (data) => {
-    console.log(data);
     return new Promise(function(resolve, reject) {
 
-    let sql = `DELETE FROM cursos WHERE code = '${data.code}';`;
-        console.log(sql);
+    let sql = `DELETE FROM cursos WHERE id = '${data.id}';`;
     connection.query(sql);
 
     resolve({status:200, data:'Curso eliminado con éxito.'});
